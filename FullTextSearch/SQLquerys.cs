@@ -77,7 +77,7 @@ namespace FullTextSearch
         }
 
 
-        public string createSqlString(List<string> searchList, char selector)
+        public string createSqlString(List<string> searchList, char selector, char vrstaPretrazivanja)
         {
             string selectString = "";
             string myTempString = "";
@@ -87,22 +87,77 @@ namespace FullTextSearch
             TempString = createFunctionString(searchList, selector);
             TempString = createTsFunction(TempString);
             selectString = "SELECT \"ID\"" + TempString + "\nFROM \"textTable\" \nWHERE ";
-            foreach (string myString in searchList)
+            if (vrstaPretrazivanja == 'A')
             {
-                if (i == 0)
-                {
-                    myTempString = myTempString + "\"Text\" LIKE '%" + myString + "%' ";
-                    i++;
-                }
-                else
-                {
-                    if (selector == '*')
-                        myTempString = myTempString + "\nAND \"Text\" LIKE '%" + myString + "%' ";
-                    else if (selector == '+')
-                        myTempString = myTempString + "\nOR \"Text\" LIKE '%" + myString + "%' ";
+                foreach (string myString in searchList)
+                {                   
+
+                    if (i == 0)
+                    {
+                        myTempString = myTempString + "\"Text\" LIKE '%" + myString + "%' ";
+                        i++;
+                    }
+                    else
+                    {
+                        if (selector == '*')
+                            myTempString = myTempString + "\nAND \"Text\" LIKE '%" + myString + "%' ";
+                        else if (selector == '+')
+                            myTempString = myTempString + "\nOR \"Text\" LIKE '%" + myString + "%' ";
+                    }
                 }
             }
-            selectString = selectString + myTempString;
+            else if (vrstaPretrazivanja == 'B')
+            {
+                foreach (string myString in searchList)
+                {
+                    string temporalString = "";
+                    string[] testingString = myString.Split(' ');
+
+                    for(int k=0; k < testingString.Length;k++)
+                    {
+                        if (k != testingString.Length - 1)
+                        {
+                            temporalString += testingString[k] + " & ";
+                        }
+                        else
+                        {
+                            temporalString += testingString[k];
+                        }
+                    }
+
+                    if (i == 0)
+                    {
+                        myTempString = myTempString + "to_tsvector(\"Text\") @@ to_tsquery('english', '" + temporalString + "')";
+                        i++;
+                    }
+                    else
+                    {
+                        if (selector == '*')
+                            myTempString = myTempString + "\nAND to_tsvector(\"Text\") @@ to_tsquery('english', '" + temporalString + "')";
+                        else if (selector == '+')
+                            myTempString = myTempString + "\nOR to_tsvector(\"Text\") @@ to_tsquery('english', '" + temporalString + "')";
+                    }
+                }
+            }
+            if (vrstaPretrazivanja == 'C')
+            {
+                foreach (string myString in searchList)
+                {
+                    if (i == 0)
+                    {
+                        myTempString = myTempString + "\"Text\" % '" + myString + "' ";
+                        i++;
+                    }
+                    else
+                    {
+                        if (selector == '*')
+                            myTempString = myTempString + "\nAND \"Text\" % '" + myString + "' ";
+                        else if (selector == '+')
+                            myTempString = myTempString + "\nOR \"Text\" % '" + myString + "' ";
+                    }
+                }
+            }
+            selectString = selectString + myTempString + "\nORDER BY rank DESC";
 
             return selectString;
         }

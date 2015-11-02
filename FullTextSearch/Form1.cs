@@ -11,6 +11,7 @@ namespace FullTextSearch
         private PostgreSQL pg = new PostgreSQL();
         private SQLquerys sqlQuerys = new SQLquerys();
         private char odabirAndOr;
+        private char vrstaPretrazivanja;
         private DataSet dataSet = new DataSet();
         private DataTable dataTable = new DataTable();        
         private Parser parser = new Parser();       
@@ -50,17 +51,15 @@ namespace FullTextSearch
             string sql;
             string highlitedText;
             string rank;
-            string mojSql;
 
             stringToSearch = textBox_Pretrazivanje.Text.Trim();
             List<string> list = parser.parseInput(stringToSearch);
 
-            sql = sqlQuerys.createSqlString(list, odabirAndOr);
+            sql = sqlQuerys.createSqlString(list, odabirAndOr, vrstaPretrazivanja);
             richTextBox1.Text = sql;
 
             pg.conn.Open();
-            mojSql = sql;
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(mojSql, pg.conn);
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(sql, pg.conn);
             dataSet.Reset();
             dataAdapter.Fill(dataSet);
             pg.conn.Close();
@@ -72,12 +71,12 @@ namespace FullTextSearch
                 {
                     NpgsqlDataReader reader = command.ExecuteReader();
                     int count = 0;
-                    linkLabel_Rezultat.Text = "";
+                    linkLabel_Rezultat.Text = " ";
                     while (reader.Read())
                     {
                         highlitedText = reader[1].ToString() as string;
                         rank = reader[3].ToString() as string;
-                        linkLabel_Rezultat.Text = linkLabel_Rezultat + highlitedText + "[" + rank + "]\n";
+                        linkLabel_Rezultat.Text += highlitedText + "[" + rank + "]\n";
                         count++;
                     }
                     labelBrojac.Text = "Broj pronađenih dokumenata je: " + count.ToString();
@@ -98,7 +97,17 @@ namespace FullTextSearch
 
         private void rbtnNeizmjenjeni_CheckedChanged(object sender, EventArgs e)
         {
+            vrstaPretrazivanja = 'A';
+        }
 
+        private void rbtn_Rijecnici_CheckedChanged(object sender, EventArgs e)
+        {
+            vrstaPretrazivanja = 'B';
+        }
+
+        private void rbtn_Fuzzy_CheckedChanged(object sender, EventArgs e)
+        {
+            vrstaPretrazivanja = 'C';
         }
     }
 }
