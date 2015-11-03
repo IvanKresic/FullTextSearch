@@ -8,7 +8,7 @@ namespace FullTextSearch
 {
     public partial class Form1 : Form
     {
-        
+        private PostgreSQL pg = new PostgreSQL();
         private SQLquerys sqlQuerys = new SQLquerys();
         private char odabirAndOr;
         private char vrstaPretrazivanja;
@@ -28,14 +28,9 @@ namespace FullTextSearch
         {
             gb_unosPodataka.Enabled = false;
             groupBox_Search.Enabled = false;
+            groupBox_Analysis.Enabled = false;
             button_Disconnect.Enabled = false;
-            //connectMe();
-
-        }
-        
-
-        private PostgreSQL pg = new PostgreSQL();
-        
+        }     
 
         private void button_unosTekstaUBazu_Click(object sender, EventArgs e)
         {
@@ -44,12 +39,12 @@ namespace FullTextSearch
             if(searchTextBoxString != "")
             {
                 pg.insertIntoTable(searchTextBoxString, pg.conn);
-                MessageBox.Show(searchTextBoxString + " dodano u bazu podataka!");
+                MessageBox.Show(searchTextBoxString + " added to database!");
                 rTB_unosTextaUBazu.Clear();                
             }
             else
             {
-                MessageBox.Show("Prazan unos nije moguć! Potrebno je upisati tekst!");
+                MessageBox.Show("Empty data is not allowed!");
             }
         }
 
@@ -87,7 +82,7 @@ namespace FullTextSearch
                         linkLabel_Rezultat.Text += highlitedText + "[" + rank + "]\n";
                         count++;
                     }
-                    labelBrojac.Text = "Broj pronađenih dokumenata je: " + count.ToString();
+                    labelBrojac.Text = "Number of documents found: " + count.ToString();
                 }
                 pg.conn.Close();
             }
@@ -123,6 +118,7 @@ namespace FullTextSearch
             connectMe();
             gb_unosPodataka.Enabled = true;
             groupBox_Search.Enabled = true;
+            groupBox_Analysis.Enabled = true;
             textBox_Database.Enabled = false;
             textBox_IP.Enabled = false;
             textBox_Port.Enabled = false;
@@ -136,6 +132,7 @@ namespace FullTextSearch
         {
             gb_unosPodataka.Enabled = false;
             groupBox_Search.Enabled = false;
+            groupBox_Analysis.Enabled = false;
             textBox_Database.Enabled = true;
             textBox_IP.Enabled = true;
             textBox_Port.Enabled = true;
@@ -148,17 +145,11 @@ namespace FullTextSearch
 
         string createConnString = "";
         private void connectMe()
-        {
-            
+        {            
             createConnString += "Server=" + textBox_IP.Text + ";Port=" + textBox_Port.Text + ";User Id=" + textBox_UserID.Text + ";Password=" + textBox_Password.Text + ";Database=" + textBox_Database.Text + ";";
             sqlQuerys.setTheKey(createConnString);
             pg.setConnectionString();
             pg.setConnection();
-        }
-
-        private string returnString()
-        {
-            return createConnString;
         }
     }
 }
