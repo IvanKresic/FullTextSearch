@@ -443,7 +443,7 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(58, 113);
+            this.dateTimePicker2.Location = new System.Drawing.Point(58, 82);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(234, 20);
             this.dateTimePicker2.TabIndex = 14;
@@ -469,7 +469,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 118);
+            this.label10.Location = new System.Drawing.Point(7, 87);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(28, 14);
             this.label10.TabIndex = 16;
