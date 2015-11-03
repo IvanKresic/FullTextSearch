@@ -8,7 +8,7 @@ namespace FullTextSearch
 {
     public partial class Form1 : Form
     {
-        private PostgreSQL pg = new PostgreSQL();
+        
         private SQLquerys sqlQuerys = new SQLquerys();
         private char odabirAndOr;
         private char vrstaPretrazivanja;
@@ -21,13 +21,21 @@ namespace FullTextSearch
             InitializeComponent();
             rbtn_AND.Checked = true;
             rbtnNeizmjenjeni.Checked = true;
-            odabirAndOr = '*';
+            odabirAndOr = '*';            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            gb_unosPodataka.Enabled = false;
+            groupBox_Search.Enabled = false;
+            button_Disconnect.Enabled = false;
+            //connectMe();
 
         }
+        
+
+        private PostgreSQL pg = new PostgreSQL();
+        
 
         private void button_unosTekstaUBazu_Click(object sender, EventArgs e)
         {
@@ -58,11 +66,11 @@ namespace FullTextSearch
             sql = sqlQuerys.createSqlString(list, odabirAndOr, vrstaPretrazivanja);
             richTextBox1.Text = sql;
 
-            pg.conn.Open();
+            pg.openConnection();
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(sql, pg.conn);
             dataSet.Reset();
             dataAdapter.Fill(dataSet);
-            pg.conn.Close();
+            pg.closeConnection();
 
             using (pg.conn)
             {
@@ -108,6 +116,49 @@ namespace FullTextSearch
         private void rbtn_Fuzzy_CheckedChanged(object sender, EventArgs e)
         {
             vrstaPretrazivanja = 'C';
+        }
+
+        private void button_Connect_Click(object sender, EventArgs e)
+        {
+            connectMe();
+            gb_unosPodataka.Enabled = true;
+            groupBox_Search.Enabled = true;
+            textBox_Database.Enabled = false;
+            textBox_IP.Enabled = false;
+            textBox_Port.Enabled = false;
+            textBox_Password.Enabled = false;
+            textBox_UserID.Enabled = false;
+            button_Connect.Enabled = false;
+            button_Disconnect.Enabled = true;
+        }
+
+        private void button_Disconnect_Click(object sender, EventArgs e)
+        {
+            gb_unosPodataka.Enabled = false;
+            groupBox_Search.Enabled = false;
+            textBox_Database.Enabled = true;
+            textBox_IP.Enabled = true;
+            textBox_Port.Enabled = true;
+            textBox_Password.Enabled = true;
+            textBox_UserID.Enabled = true;
+            button_Connect.Enabled = true;
+            button_Disconnect.Enabled = false;
+        }
+
+
+        string createConnString = "";
+        private void connectMe()
+        {
+            
+            createConnString += "Server=" + textBox_IP.Text + ";Port=" + textBox_Port.Text + ";User Id=" + textBox_UserID.Text + ";Password=" + textBox_Password.Text + ";Database=" + textBox_Database.Text + ";";
+            sqlQuerys.setTheKey(createConnString);
+            pg.setConnectionString();
+            pg.setConnection();
+        }
+
+        private string returnString()
+        {
+            return createConnString;
         }
     }
 }

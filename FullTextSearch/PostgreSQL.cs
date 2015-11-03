@@ -7,6 +7,8 @@ namespace FullTextSearch
     {
         public string connectionstring;
         public NpgsqlConnection conn;
+        SQLquerys sql = new SQLquerys();
+        private string newConnString;
 
         public PostgreSQL()
         {
@@ -14,20 +16,28 @@ namespace FullTextSearch
             this.setConnection();
         }
 
-        private void setConnectionString()
+        public void setConnectionString()
         {
-            this.connectionstring = String.Format("Server=192.168.56.12;Port=5432;" +
-                    "User Id=postgres;Password=reverse;Database=postgres;");
+            newConnString = sql.getTheKey();
+            this.connectionstring = String.Format(newConnString);
+            this.setConnection();
         }
 
-        private void setConnection()
+        public void setConnection()
         {
             this.conn = new NpgsqlConnection(connectionstring);
         }
 
         public void openConnection()
         {
-            conn.Open();
+            try
+            {
+                conn.Open();
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("Nije se moguće spojiti! Provjerite podatke!");
+            }
         }
 
         public void closeConnection()
@@ -46,7 +56,6 @@ namespace FullTextSearch
 
             NpgsqlCommand myCommand = new NpgsqlCommand(mySqlString, nsqlConn);
             myCommand.Parameters.Add(myParameter);
-
             myCommand.ExecuteNonQuery();
 
             this.closeConnection();

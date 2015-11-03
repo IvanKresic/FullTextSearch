@@ -5,6 +5,20 @@ namespace FullTextSearch
 {
     class SQLquerys
     {
+
+        static string giveMeTheKey;
+        public void setTheKey(string connString)
+        {
+            giveMeTheKey = connString;
+            giveMeTheKey += "";
+        }
+
+        public string getTheKey()
+        {
+            giveMeTheKey += "";
+            return giveMeTheKey;
+        }
+
         public string createFunctionString(List<string> searchList, char selector)
         {
             string TempString = "";
