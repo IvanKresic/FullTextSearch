@@ -33,6 +33,7 @@
             this.rTB_unosTextaUBazu = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox_Search = new System.Windows.Forms.GroupBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel_Rezultat = new System.Windows.Forms.LinkLabel();
             this.labelBrojac = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,26 +48,25 @@
             this.button_Pretrazi = new System.Windows.Forms.Button();
             this.textBox_Pretrazivanje = new System.Windows.Forms.TextBox();
             this.groupBox_Connect = new System.Windows.Forms.GroupBox();
-            this.textBox_IP = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox_Port = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox_UserID = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox_Password = new System.Windows.Forms.TextBox();
+            this.button_Disconnect = new System.Windows.Forms.Button();
+            this.button_Connect = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox_Database = new System.Windows.Forms.TextBox();
-            this.button_Connect = new System.Windows.Forms.Button();
-            this.button_Disconnect = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox_Password = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox_UserID = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox_Port = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox_IP = new System.Windows.Forms.TextBox();
             this.groupBox_Analysis = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dateTimePicker_To = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_From = new System.Windows.Forms.DateTimePicker();
             this.gb_unosPodataka.SuspendLayout();
             this.groupBox_Search.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -136,6 +136,20 @@
             this.groupBox_Search.TabIndex = 1;
             this.groupBox_Search.TabStop = false;
             this.groupBox_Search.Text = "Search";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.LinkArea = new System.Windows.Forms.LinkArea(0, 7);
+            this.linkLabel1.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel1.Location = new System.Drawing.Point(6, 466);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(155, 24);
+            this.linkLabel1.TabIndex = 12;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "SEARCH RESULTS:";
+            this.linkLabel1.UseCompatibleTextRendering = true;
             // 
             // linkLabel_Rezultat
             // 
@@ -256,7 +270,7 @@
             // 
             // button_Pretrazi
             // 
-            this.button_Pretrazi.BackColor = System.Drawing.SystemColors.Highlight;
+            this.button_Pretrazi.BackColor = System.Drawing.Color.SkyBlue;
             this.button_Pretrazi.Font = new System.Drawing.Font("Georgia", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Pretrazi.Location = new System.Drawing.Point(7, 136);
             this.button_Pretrazi.Name = "button_Pretrazi";
@@ -295,56 +309,46 @@
             this.groupBox_Connect.TabStop = false;
             this.groupBox_Connect.Text = "Database connection";
             // 
-            // textBox_IP
+            // button_Disconnect
             // 
-            this.textBox_IP.Location = new System.Drawing.Point(98, 34);
-            this.textBox_IP.Name = "textBox_IP";
-            this.textBox_IP.Size = new System.Drawing.Size(180, 20);
-            this.textBox_IP.TabIndex = 12;
-            this.textBox_IP.Text = "192.168.56.12";
+            this.button_Disconnect.BackColor = System.Drawing.Color.IndianRed;
+            this.button_Disconnect.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Disconnect.Location = new System.Drawing.Point(10, 222);
+            this.button_Disconnect.Name = "button_Disconnect";
+            this.button_Disconnect.Size = new System.Drawing.Size(282, 25);
+            this.button_Disconnect.TabIndex = 21;
+            this.button_Disconnect.Text = "Disconnect";
+            this.button_Disconnect.UseVisualStyleBackColor = false;
+            this.button_Disconnect.Click += new System.EventHandler(this.button_Disconnect_Click);
             // 
-            // label3
+            // button_Connect
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 38);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 14);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "IP adresa:";
+            this.button_Connect.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.button_Connect.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Connect.Location = new System.Drawing.Point(10, 186);
+            this.button_Connect.Name = "button_Connect";
+            this.button_Connect.Size = new System.Drawing.Size(282, 25);
+            this.button_Connect.TabIndex = 12;
+            this.button_Connect.Text = "Connect";
+            this.button_Connect.UseVisualStyleBackColor = false;
+            this.button_Connect.Click += new System.EventHandler(this.button_Connect_Click);
             // 
-            // label4
+            // label7
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 66);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 14);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Port: ";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 150);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(66, 14);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Database: ";
             // 
-            // textBox_Port
+            // textBox_Database
             // 
-            this.textBox_Port.Location = new System.Drawing.Point(98, 62);
-            this.textBox_Port.Name = "textBox_Port";
-            this.textBox_Port.Size = new System.Drawing.Size(180, 20);
-            this.textBox_Port.TabIndex = 14;
-            this.textBox_Port.Text = "5432";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 94);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 14);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "User ID:";
-            // 
-            // textBox_UserID
-            // 
-            this.textBox_UserID.Location = new System.Drawing.Point(98, 90);
-            this.textBox_UserID.Name = "textBox_UserID";
-            this.textBox_UserID.Size = new System.Drawing.Size(180, 20);
-            this.textBox_UserID.TabIndex = 16;
-            this.textBox_UserID.Text = "postgres";
+            this.textBox_Database.Location = new System.Drawing.Point(98, 146);
+            this.textBox_Database.Name = "textBox_Database";
+            this.textBox_Database.Size = new System.Drawing.Size(180, 20);
+            this.textBox_Database.TabIndex = 20;
+            this.textBox_Database.Text = "postgres";
             // 
             // label6
             // 
@@ -364,60 +368,56 @@
             this.textBox_Password.TabIndex = 18;
             this.textBox_Password.Text = "reverse";
             // 
-            // label7
+            // label5
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 150);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(66, 14);
-            this.label7.TabIndex = 19;
-            this.label7.Text = "Database: ";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 94);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(52, 14);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "User ID:";
             // 
-            // textBox_Database
+            // textBox_UserID
             // 
-            this.textBox_Database.Location = new System.Drawing.Point(98, 146);
-            this.textBox_Database.Name = "textBox_Database";
-            this.textBox_Database.Size = new System.Drawing.Size(180, 20);
-            this.textBox_Database.TabIndex = 20;
-            this.textBox_Database.Text = "postgres";
+            this.textBox_UserID.Location = new System.Drawing.Point(98, 90);
+            this.textBox_UserID.Name = "textBox_UserID";
+            this.textBox_UserID.Size = new System.Drawing.Size(180, 20);
+            this.textBox_UserID.TabIndex = 16;
+            this.textBox_UserID.Text = "postgres";
             // 
-            // button_Connect
+            // label4
             // 
-            this.button_Connect.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.button_Connect.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Connect.Location = new System.Drawing.Point(10, 186);
-            this.button_Connect.Name = "button_Connect";
-            this.button_Connect.Size = new System.Drawing.Size(282, 25);
-            this.button_Connect.TabIndex = 12;
-            this.button_Connect.Text = "Connect";
-            this.button_Connect.UseVisualStyleBackColor = false;
-            this.button_Connect.Click += new System.EventHandler(this.button_Connect_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 66);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 14);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Port: ";
             // 
-            // button_Disconnect
+            // textBox_Port
             // 
-            this.button_Disconnect.BackColor = System.Drawing.Color.IndianRed;
-            this.button_Disconnect.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Disconnect.Location = new System.Drawing.Point(10, 222);
-            this.button_Disconnect.Name = "button_Disconnect";
-            this.button_Disconnect.Size = new System.Drawing.Size(282, 25);
-            this.button_Disconnect.TabIndex = 21;
-            this.button_Disconnect.Text = "Disconnect";
-            this.button_Disconnect.UseVisualStyleBackColor = false;
-            this.button_Disconnect.Click += new System.EventHandler(this.button_Disconnect_Click);
+            this.textBox_Port.Location = new System.Drawing.Point(98, 62);
+            this.textBox_Port.Name = "textBox_Port";
+            this.textBox_Port.Size = new System.Drawing.Size(180, 20);
+            this.textBox_Port.TabIndex = 14;
+            this.textBox_Port.Text = "5432";
             // 
-            // linkLabel1
+            // label3
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.LinkArea = new System.Windows.Forms.LinkArea(0, 7);
-            this.linkLabel1.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel1.Location = new System.Drawing.Point(6, 466);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(155, 24);
-            this.linkLabel1.TabIndex = 12;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "SEARCH RESULTS:";
-            this.linkLabel1.UseCompatibleTextRendering = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 38);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(63, 14);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "IP adresa:";
+            // 
+            // textBox_IP
+            // 
+            this.textBox_IP.Location = new System.Drawing.Point(98, 34);
+            this.textBox_IP.Name = "textBox_IP";
+            this.textBox_IP.Size = new System.Drawing.Size(180, 20);
+            this.textBox_IP.TabIndex = 12;
+            this.textBox_IP.Text = "192.168.56.12";
             // 
             // groupBox_Analysis
             // 
@@ -425,55 +425,14 @@
             this.groupBox_Analysis.Controls.Add(this.label10);
             this.groupBox_Analysis.Controls.Add(this.label9);
             this.groupBox_Analysis.Controls.Add(this.label8);
-            this.groupBox_Analysis.Controls.Add(this.dateTimePicker2);
-            this.groupBox_Analysis.Controls.Add(this.dateTimePicker1);
+            this.groupBox_Analysis.Controls.Add(this.dateTimePicker_To);
+            this.groupBox_Analysis.Controls.Add(this.dateTimePicker_From);
             this.groupBox_Analysis.Location = new System.Drawing.Point(14, 549);
             this.groupBox_Analysis.Name = "groupBox_Analysis";
             this.groupBox_Analysis.Size = new System.Drawing.Size(300, 211);
             this.groupBox_Analysis.TabIndex = 13;
             this.groupBox_Analysis.TabStop = false;
             this.groupBox_Analysis.Text = "Analysis";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(58, 56);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(234, 20);
-            this.dateTimePicker1.TabIndex = 13;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(58, 82);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(234, 20);
-            this.dateTimePicker2.TabIndex = 14;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 29);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(83, 14);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Analize data:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 61);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(45, 14);
-            this.label9.TabIndex = 15;
-            this.label9.Text = "FROM:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 87);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(28, 14);
-            this.label10.TabIndex = 16;
-            this.label10.Text = "TO:";
             // 
             // button1
             // 
@@ -485,6 +444,49 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Analize";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 87);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(28, 14);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "TO:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 61);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(45, 14);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "FROM:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 29);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(83, 14);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Analize data:";
+            // 
+            // dateTimePicker_To
+            // 
+            this.dateTimePicker_To.Location = new System.Drawing.Point(58, 82);
+            this.dateTimePicker_To.Name = "dateTimePicker_To";
+            this.dateTimePicker_To.Size = new System.Drawing.Size(234, 20);
+            this.dateTimePicker_To.TabIndex = 14;
+            // 
+            // dateTimePicker_From
+            // 
+            this.dateTimePicker_From.Location = new System.Drawing.Point(58, 56);
+            this.dateTimePicker_From.Name = "dateTimePicker_From";
+            this.dateTimePicker_From.Size = new System.Drawing.Size(234, 20);
+            this.dateTimePicker_From.TabIndex = 13;
+            this.dateTimePicker_From.Value = new System.DateTime(2015, 11, 3, 11, 44, 0, 0);
             // 
             // Form1
             // 
@@ -497,7 +499,7 @@
             this.Controls.Add(this.gb_unosPodataka);
             this.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Full Text Search";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gb_unosPodataka.ResumeLayout(false);
             this.gb_unosPodataka.PerformLayout();
@@ -554,8 +556,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_To;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_From;
     }
 }
 

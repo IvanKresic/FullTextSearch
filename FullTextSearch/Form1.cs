@@ -30,6 +30,10 @@ namespace FullTextSearch
             groupBox_Search.Enabled = false;
             groupBox_Analysis.Enabled = false;
             button_Disconnect.Enabled = false;
+            button_Pretrazi.BackColor = System.Drawing.Color.WhiteSmoke;
+            button_Disconnect.BackColor = System.Drawing.Color.WhiteSmoke;
+            button_unosTekstaUBazu.BackColor = System.Drawing.Color.WhiteSmoke;
+            button1.BackColor = System.Drawing.Color.WhiteSmoke;
         }     
 
         private void button_unosTekstaUBazu_Click(object sender, EventArgs e)
@@ -126,6 +130,12 @@ namespace FullTextSearch
             textBox_UserID.Enabled = false;
             button_Connect.Enabled = false;
             button_Disconnect.Enabled = true;
+
+            button_Pretrazi.BackColor = System.Drawing.Color.SkyBlue;
+            button_Disconnect.BackColor = System.Drawing.Color.IndianRed;
+            button_unosTekstaUBazu.BackColor = System.Drawing.Color.MediumSeaGreen;
+            button1.BackColor = System.Drawing.Color.MediumSeaGreen;
+            button_Connect.BackColor = System.Drawing.Color.WhiteSmoke;
         }
 
         private void button_Disconnect_Click(object sender, EventArgs e)
@@ -140,6 +150,12 @@ namespace FullTextSearch
             textBox_UserID.Enabled = true;
             button_Connect.Enabled = true;
             button_Disconnect.Enabled = false;
+
+            button_Pretrazi.BackColor = System.Drawing.Color.WhiteSmoke;
+            button_Disconnect.BackColor = System.Drawing.Color.WhiteSmoke;
+            button_unosTekstaUBazu.BackColor = System.Drawing.Color.WhiteSmoke;
+            button1.BackColor = System.Drawing.Color.WhiteSmoke;
+            button_Connect.BackColor = System.Drawing.Color.MediumSeaGreen;
         }
 
 
@@ -150,6 +166,16 @@ namespace FullTextSearch
             sqlQuerys.setTheKey(createConnString);
             pg.setConnectionString();
             pg.setConnection();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string from;
+            string to;
+            from = dateTimePicker_From.Value.ToString("dd/MM/yyyy hh:mm");
+            to = dateTimePicker_To.Value.ToString("dd/MM/yyyy hh:mm");
+            from += "";
+            to += "";
         }
     }
 }
