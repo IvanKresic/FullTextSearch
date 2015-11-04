@@ -67,12 +67,16 @@
             this.label8 = new System.Windows.Forms.Label();
             this.dateTimePicker_To = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker_From = new System.Windows.Forms.DateTimePicker();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton_Day = new System.Windows.Forms.RadioButton();
+            this.radioButton_Hour = new System.Windows.Forms.RadioButton();
             this.gb_unosPodataka.SuspendLayout();
             this.groupBox_Search.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox_Connect.SuspendLayout();
             this.groupBox_Analysis.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gb_unosPodataka
@@ -81,7 +85,7 @@
             this.gb_unosPodataka.Controls.Add(this.rTB_unosTextaUBazu);
             this.gb_unosPodataka.Controls.Add(this.label1);
             this.gb_unosPodataka.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gb_unosPodataka.Location = new System.Drawing.Point(14, 303);
+            this.gb_unosPodataka.Location = new System.Drawing.Point(13, 294);
             this.gb_unosPodataka.Name = "gb_unosPodataka";
             this.gb_unosPodataka.Size = new System.Drawing.Size(300, 218);
             this.gb_unosPodataka.TabIndex = 0;
@@ -92,9 +96,9 @@
             // 
             this.button_unosTekstaUBazu.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.button_unosTekstaUBazu.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_unosTekstaUBazu.Location = new System.Drawing.Point(7, 163);
+            this.button_unosTekstaUBazu.Location = new System.Drawing.Point(7, 178);
             this.button_unosTekstaUBazu.Name = "button_unosTekstaUBazu";
-            this.button_unosTekstaUBazu.Size = new System.Drawing.Size(286, 25);
+            this.button_unosTekstaUBazu.Size = new System.Drawing.Size(286, 31);
             this.button_unosTekstaUBazu.TabIndex = 1;
             this.button_unosTekstaUBazu.Text = "Add to database";
             this.button_unosTekstaUBazu.UseVisualStyleBackColor = false;
@@ -104,7 +108,7 @@
             // 
             this.rTB_unosTextaUBazu.Location = new System.Drawing.Point(7, 53);
             this.rTB_unosTextaUBazu.Name = "rTB_unosTextaUBazu";
-            this.rTB_unosTextaUBazu.Size = new System.Drawing.Size(285, 103);
+            this.rTB_unosTextaUBazu.Size = new System.Drawing.Size(285, 119);
             this.rTB_unosTextaUBazu.TabIndex = 1;
             this.rTB_unosTextaUBazu.Text = "";
             // 
@@ -313,9 +317,9 @@
             // 
             this.button_Disconnect.BackColor = System.Drawing.Color.IndianRed;
             this.button_Disconnect.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Disconnect.Location = new System.Drawing.Point(10, 222);
+            this.button_Disconnect.Location = new System.Drawing.Point(10, 215);
             this.button_Disconnect.Name = "button_Disconnect";
-            this.button_Disconnect.Size = new System.Drawing.Size(282, 25);
+            this.button_Disconnect.Size = new System.Drawing.Size(282, 32);
             this.button_Disconnect.TabIndex = 21;
             this.button_Disconnect.Text = "Disconnect";
             this.button_Disconnect.UseVisualStyleBackColor = false;
@@ -325,9 +329,9 @@
             // 
             this.button_Connect.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.button_Connect.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Connect.Location = new System.Drawing.Point(10, 186);
+            this.button_Connect.Location = new System.Drawing.Point(10, 180);
             this.button_Connect.Name = "button_Connect";
-            this.button_Connect.Size = new System.Drawing.Size(282, 25);
+            this.button_Connect.Size = new System.Drawing.Size(282, 31);
             this.button_Connect.TabIndex = 12;
             this.button_Connect.Text = "Connect";
             this.button_Connect.UseVisualStyleBackColor = false;
@@ -421,15 +425,16 @@
             // 
             // groupBox_Analysis
             // 
+            this.groupBox_Analysis.Controls.Add(this.groupBox1);
             this.groupBox_Analysis.Controls.Add(this.button1);
             this.groupBox_Analysis.Controls.Add(this.label10);
             this.groupBox_Analysis.Controls.Add(this.label9);
             this.groupBox_Analysis.Controls.Add(this.label8);
             this.groupBox_Analysis.Controls.Add(this.dateTimePicker_To);
             this.groupBox_Analysis.Controls.Add(this.dateTimePicker_From);
-            this.groupBox_Analysis.Location = new System.Drawing.Point(14, 549);
+            this.groupBox_Analysis.Location = new System.Drawing.Point(14, 533);
             this.groupBox_Analysis.Name = "groupBox_Analysis";
-            this.groupBox_Analysis.Size = new System.Drawing.Size(300, 211);
+            this.groupBox_Analysis.Size = new System.Drawing.Size(300, 227);
             this.groupBox_Analysis.TabIndex = 13;
             this.groupBox_Analysis.TabStop = false;
             this.groupBox_Analysis.Text = "Analysis";
@@ -438,7 +443,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.button1.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(7, 169);
+            this.button1.Location = new System.Drawing.Point(7, 194);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(286, 27);
             this.button1.TabIndex = 2;
@@ -488,6 +493,39 @@
             this.dateTimePicker_From.TabIndex = 13;
             this.dateTimePicker_From.Value = new System.DateTime(2015, 11, 3, 11, 44, 0, 0);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButton_Hour);
+            this.groupBox1.Controls.Add(this.radioButton_Day);
+            this.groupBox1.Location = new System.Drawing.Point(10, 114);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(281, 74);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Granulate by";
+            // 
+            // radioButton_Day
+            // 
+            this.radioButton_Day.AutoSize = true;
+            this.radioButton_Day.Location = new System.Drawing.Point(54, 35);
+            this.radioButton_Day.Name = "radioButton_Day";
+            this.radioButton_Day.Size = new System.Drawing.Size(48, 18);
+            this.radioButton_Day.TabIndex = 13;
+            this.radioButton_Day.TabStop = true;
+            this.radioButton_Day.Text = "Day";
+            this.radioButton_Day.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_Hour
+            // 
+            this.radioButton_Hour.AutoSize = true;
+            this.radioButton_Hour.Location = new System.Drawing.Point(179, 35);
+            this.radioButton_Hour.Name = "radioButton_Hour";
+            this.radioButton_Hour.Size = new System.Drawing.Size(55, 18);
+            this.radioButton_Hour.TabIndex = 14;
+            this.radioButton_Hour.TabStop = true;
+            this.radioButton_Hour.Text = "Hour";
+            this.radioButton_Hour.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -513,6 +551,8 @@
             this.groupBox_Connect.PerformLayout();
             this.groupBox_Analysis.ResumeLayout(false);
             this.groupBox_Analysis.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -558,6 +598,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dateTimePicker_To;
         private System.Windows.Forms.DateTimePicker dateTimePicker_From;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButton_Hour;
+        private System.Windows.Forms.RadioButton radioButton_Day;
     }
 }
 

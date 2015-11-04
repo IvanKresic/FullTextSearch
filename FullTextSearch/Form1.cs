@@ -21,7 +21,8 @@ namespace FullTextSearch
             InitializeComponent();
             rbtn_AND.Checked = true;
             rbtnNeizmjenjeni.Checked = true;
-            odabirAndOr = '*';            
+            odabirAndOr = '*';
+            radioButton_Day.Checked = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -33,7 +34,7 @@ namespace FullTextSearch
             button_Pretrazi.BackColor = System.Drawing.Color.WhiteSmoke;
             button_Disconnect.BackColor = System.Drawing.Color.WhiteSmoke;
             button_unosTekstaUBazu.BackColor = System.Drawing.Color.WhiteSmoke;
-            button1.BackColor = System.Drawing.Color.WhiteSmoke;
+            button1.BackColor = System.Drawing.Color.WhiteSmoke;            
         }     
 
         private void button_unosTekstaUBazu_Click(object sender, EventArgs e)
@@ -174,8 +175,8 @@ namespace FullTextSearch
             string to;
             from = dateTimePicker_From.Value.ToString("dd/MM/yyyy hh:mm");
             to = dateTimePicker_To.Value.ToString("dd/MM/yyyy hh:mm");
-            from += "";
-            to += "";
+            Analysis analize = new Analysis();
+            analize.Show();
         }
     }
 }
