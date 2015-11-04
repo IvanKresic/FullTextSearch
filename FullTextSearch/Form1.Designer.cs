@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.gb_unosPodataka = new System.Windows.Forms.GroupBox();
             this.button_unosTekstaUBazu = new System.Windows.Forms.Button();
             this.rTB_unosTextaUBazu = new System.Windows.Forms.RichTextBox();
@@ -187,7 +188,7 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(7, 222);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(752, 202);
+            this.richTextBox1.Size = new System.Drawing.Size(766, 202);
             this.richTextBox1.TabIndex = 5;
             this.richTextBox1.Text = "";
             // 
@@ -278,7 +279,7 @@
             this.button_Pretrazi.Font = new System.Drawing.Font("Georgia", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Pretrazi.Location = new System.Drawing.Point(7, 136);
             this.button_Pretrazi.Name = "button_Pretrazi";
-            this.button_Pretrazi.Size = new System.Drawing.Size(752, 41);
+            this.button_Pretrazi.Size = new System.Drawing.Size(766, 41);
             this.button_Pretrazi.TabIndex = 2;
             this.button_Pretrazi.Text = "SEARCH";
             this.button_Pretrazi.UseVisualStyleBackColor = false;
@@ -443,9 +444,9 @@
             // 
             this.button1.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.button1.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(7, 194);
+            this.button1.Location = new System.Drawing.Point(7, 190);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(286, 27);
+            this.button1.Size = new System.Drawing.Size(286, 31);
             this.button1.TabIndex = 2;
             this.button1.Text = "Analize";
             this.button1.UseVisualStyleBackColor = false;
@@ -454,7 +455,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 87);
+            this.label10.Location = new System.Drawing.Point(7, 83);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(28, 14);
             this.label10.TabIndex = 16;
@@ -463,7 +464,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 61);
+            this.label9.Location = new System.Drawing.Point(7, 57);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(45, 14);
             this.label9.TabIndex = 15;
@@ -472,7 +473,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 29);
+            this.label8.Location = new System.Drawing.Point(7, 25);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(83, 14);
             this.label8.TabIndex = 13;
@@ -480,14 +481,14 @@
             // 
             // dateTimePicker_To
             // 
-            this.dateTimePicker_To.Location = new System.Drawing.Point(58, 82);
+            this.dateTimePicker_To.Location = new System.Drawing.Point(58, 78);
             this.dateTimePicker_To.Name = "dateTimePicker_To";
             this.dateTimePicker_To.Size = new System.Drawing.Size(234, 20);
             this.dateTimePicker_To.TabIndex = 14;
             // 
             // dateTimePicker_From
             // 
-            this.dateTimePicker_From.Location = new System.Drawing.Point(58, 56);
+            this.dateTimePicker_From.Location = new System.Drawing.Point(58, 52);
             this.dateTimePicker_From.Name = "dateTimePicker_From";
             this.dateTimePicker_From.Size = new System.Drawing.Size(234, 20);
             this.dateTimePicker_From.TabIndex = 13;
@@ -497,7 +498,7 @@
             // 
             this.groupBox1.Controls.Add(this.radioButton_Hour);
             this.groupBox1.Controls.Add(this.radioButton_Day);
-            this.groupBox1.Location = new System.Drawing.Point(10, 114);
+            this.groupBox1.Location = new System.Drawing.Point(10, 110);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(281, 74);
             this.groupBox1.TabIndex = 13;
@@ -536,6 +537,7 @@
             this.Controls.Add(this.groupBox_Search);
             this.Controls.Add(this.gb_unosPodataka);
             this.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Full Text Search";
             this.Load += new System.EventHandler(this.Form1_Load);

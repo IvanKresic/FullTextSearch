@@ -157,6 +157,11 @@ namespace FullTextSearch
             button_unosTekstaUBazu.BackColor = System.Drawing.Color.WhiteSmoke;
             button1.BackColor = System.Drawing.Color.WhiteSmoke;
             button_Connect.BackColor = System.Drawing.Color.MediumSeaGreen;
+
+            textBox_Pretrazivanje.Text = "";
+            linkLabel_Rezultat.Text = "";
+            richTextBox1.Text = "";
+            labelBrojac.Text = "";
         }
 
 
