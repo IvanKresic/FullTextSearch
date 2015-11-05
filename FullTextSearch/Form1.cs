@@ -10,11 +10,13 @@ namespace FullTextSearch
     {
         private PostgreSQL pg = new PostgreSQL();
         private SQLquerys sqlQuerys = new SQLquerys();
-        private char odabirAndOr;
-        private char vrstaPretrazivanja;
         private DataSet dataSet = new DataSet();
         private DataTable dataTable = new DataTable();        
-        private Parser parser = new Parser();       
+        private Parser parser = new Parser();
+
+        private char odabirAndOr;
+        private char vrstaPretrazivanja;
+        private char analysisType;
 
         public Form1()
         {
@@ -22,6 +24,7 @@ namespace FullTextSearch
             rbtn_AND.Checked = true;
             rbtnNeizmjenjeni.Checked = true;
             odabirAndOr = '*';
+            radioButton_Day.Checked = true;
             radioButton_Day.Checked = true;
         }
 
@@ -60,6 +63,7 @@ namespace FullTextSearch
             string highlitedText;
             string rank;
             string check;
+            //int checkReturn;
 
             stringToSearch = textBox_Pretrazivanje.Text.Trim();
             List<string> list = parser.parseInput(stringToSearch);
@@ -69,20 +73,15 @@ namespace FullTextSearch
 
             check = sqlQuerys.testIfEmpty(stringToSearch);
             pg.insertIntoAnalysisTable(stringToSearch, pg.conn);
+            //checkReturn = pg.checkIfNull(check, pg.conn);
 
             pg.openConnection();
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(sql, pg.conn);            
             dataSet.Reset();
             dataAdapter.Fill(dataSet);
-            pg.closeConnection();
-
-
-
-            using (pg.conn)
-            {
-                pg.conn.Open();
-                using (NpgsqlCommand command = new NpgsqlCommand(sql, pg.conn))
-                {
+            //pg.closeConnection();
+            //pg.conn.Open();
+            NpgsqlCommand command = new NpgsqlCommand(sql, pg.conn);                
                     NpgsqlDataReader reader = command.ExecuteReader();
                     int count = 0;
                     linkLabel_Rezultat.Text = " ";
@@ -94,9 +93,7 @@ namespace FullTextSearch
                         count++;
                     }
                     labelBrojac.Text = "Number of documents found: " + count.ToString();
-                }
-                pg.conn.Close();
-            }
+            pg.closeConnection();
         }
 
         private void rbtn_AND_CheckedChanged(object sender, EventArgs e)
@@ -182,28 +179,20 @@ namespace FullTextSearch
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string dateFrom;
-            string dateTo;
-            string timeFrom;
-            string timeTo;
             string selectedTimestamp;
-            string searchedText;
-            string[] temp;
-            
-
-            searchedText = textBox_Pretrazivanje.Text;
-
-            selectedTimestamp = dateTimePicker_From.Value.ToString("dd-MM-yyyy hh:mm:ss")+" "+dateTimePicker_To.Value.ToString("dd-MM-yyyy hh:mm:ss");
-
-            temp = selectedTimestamp.Split(' ');
-            dateFrom = temp[0];
-            timeFrom = temp[1];
-            dateTo = temp[2];
-            timeTo = temp[3];           
-            
-
-            Analysis analize = new Analysis();
+            selectedTimestamp = dateTimePicker_From.Value.ToString("dd-MM-yyyy hh:mm:ss")+" "+dateTimePicker_To.Value.ToString("dd-MM-yyyy hh:mm:ss");        
+            Analysis analize = new Analysis(selectedTimestamp, analysisType);
             analize.Show();
+        }
+
+        private void radioButton_Day_CheckedChanged(object sender, EventArgs e)
+        {
+            analysisType = 'D';
+        }
+
+        private void radioButton_Hour_CheckedChanged(object sender, EventArgs e)
+        {
+            analysisType = 'H';
         }
     }
 }

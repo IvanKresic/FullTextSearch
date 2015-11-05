@@ -179,7 +179,7 @@ namespace FullTextSearch
 
         public string testIfEmpty(string searchedText)
         {
-            string checkingIfEmpty = "SELECT * FROM "+'"'+"analysisTable"+'"'+" WHERE searchedText == " + searchedText;
+            string checkingIfEmpty = "SELECT * FROM \"analysisTable\" WHERE \"searchedText\" =' " + searchedText+"'";
             return checkingIfEmpty;
         }
     }

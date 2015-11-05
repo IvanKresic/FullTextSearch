@@ -62,15 +62,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox_IP = new System.Windows.Forms.TextBox();
             this.groupBox_Analysis = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton_Hour = new System.Windows.Forms.RadioButton();
+            this.radioButton_Day = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dateTimePicker_To = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker_From = new System.Windows.Forms.DateTimePicker();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton_Day = new System.Windows.Forms.RadioButton();
-            this.radioButton_Hour = new System.Windows.Forms.RadioButton();
             this.gb_unosPodataka.SuspendLayout();
             this.groupBox_Search.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -440,6 +440,41 @@
             this.groupBox_Analysis.TabStop = false;
             this.groupBox_Analysis.Text = "Analysis";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButton_Hour);
+            this.groupBox1.Controls.Add(this.radioButton_Day);
+            this.groupBox1.Location = new System.Drawing.Point(10, 110);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(281, 74);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Granulate by";
+            // 
+            // radioButton_Hour
+            // 
+            this.radioButton_Hour.AutoSize = true;
+            this.radioButton_Hour.Location = new System.Drawing.Point(179, 35);
+            this.radioButton_Hour.Name = "radioButton_Hour";
+            this.radioButton_Hour.Size = new System.Drawing.Size(55, 18);
+            this.radioButton_Hour.TabIndex = 14;
+            this.radioButton_Hour.TabStop = true;
+            this.radioButton_Hour.Text = "Hour";
+            this.radioButton_Hour.UseVisualStyleBackColor = true;
+            this.radioButton_Hour.CheckedChanged += new System.EventHandler(this.radioButton_Hour_CheckedChanged);
+            // 
+            // radioButton_Day
+            // 
+            this.radioButton_Day.AutoSize = true;
+            this.radioButton_Day.Location = new System.Drawing.Point(54, 35);
+            this.radioButton_Day.Name = "radioButton_Day";
+            this.radioButton_Day.Size = new System.Drawing.Size(48, 18);
+            this.radioButton_Day.TabIndex = 13;
+            this.radioButton_Day.TabStop = true;
+            this.radioButton_Day.Text = "Day";
+            this.radioButton_Day.UseVisualStyleBackColor = true;
+            this.radioButton_Day.CheckedChanged += new System.EventHandler(this.radioButton_Day_CheckedChanged);
+            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.MediumSeaGreen;
@@ -493,39 +528,6 @@
             this.dateTimePicker_From.Size = new System.Drawing.Size(234, 20);
             this.dateTimePicker_From.TabIndex = 13;
             this.dateTimePicker_From.Value = new System.DateTime(2015, 11, 3, 11, 44, 0, 0);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.radioButton_Hour);
-            this.groupBox1.Controls.Add(this.radioButton_Day);
-            this.groupBox1.Location = new System.Drawing.Point(10, 110);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(281, 74);
-            this.groupBox1.TabIndex = 13;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Granulate by";
-            // 
-            // radioButton_Day
-            // 
-            this.radioButton_Day.AutoSize = true;
-            this.radioButton_Day.Location = new System.Drawing.Point(54, 35);
-            this.radioButton_Day.Name = "radioButton_Day";
-            this.radioButton_Day.Size = new System.Drawing.Size(48, 18);
-            this.radioButton_Day.TabIndex = 13;
-            this.radioButton_Day.TabStop = true;
-            this.radioButton_Day.Text = "Day";
-            this.radioButton_Day.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_Hour
-            // 
-            this.radioButton_Hour.AutoSize = true;
-            this.radioButton_Hour.Location = new System.Drawing.Point(179, 35);
-            this.radioButton_Hour.Name = "radioButton_Hour";
-            this.radioButton_Hour.Size = new System.Drawing.Size(55, 18);
-            this.radioButton_Hour.TabIndex = 14;
-            this.radioButton_Hour.TabStop = true;
-            this.radioButton_Hour.Text = "Hour";
-            this.radioButton_Hour.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
