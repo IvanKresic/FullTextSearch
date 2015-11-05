@@ -77,29 +77,6 @@ namespace FullTextSearch
             this.closeConnection();
         }
 
-        //public int checkIfNull(string sqlQuery, NpgsqlConnection nsqlConn)
-        //{
-        //    int temp;
-
-        //    this.openConnection();
-
-        //    NpgsqlCommand myCommand = new NpgsqlCommand(sqlQuery, nsqlConn);
-        //    //temp = myCommand.ExecuteNonQuery();
-        //    //temp = Convert.ToInt32(myCommand.ExecuteScalar());
-        //    using (NpgsqlDataReader reader = myCommand.ExecuteReader())
-        //    {
-        //        if(reader.HasRows)
-        //        {
-        //            temp = 1;
-        //        }
-        //        else
-        //        {
-        //            temp = 0;
-        //        }
-        //    }
-        //        this.closeConnection();
-        //    return temp;
-        //}
 
         public void executeQuery(string queryText, NpgsqlConnection nsqlConn)
         {

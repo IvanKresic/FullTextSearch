@@ -182,5 +182,15 @@ namespace FullTextSearch
             string checkingIfEmpty = "SELECT * FROM \"analysisTable\" WHERE \"searchedText\" =' " + searchedText+"'";
             return checkingIfEmpty;
         }
+
+        public string queryForAnalysis()
+        {
+            string myTestsql = "SELECT * FROM crosstab('SELECT CAST((\"searchedText\") AS text) searchedText,"
+                        + " CAST(EXTRACT(HOUR FROM \"timeOfSearch\") AS int) AS sat, CAST(COUNT(*) AS int) AS broj FROM \"analysisTable\" GROUP BY \"searchedText\", sat"
+                        + " ORDER BY \"searchedText\", sat', 'SELECT rbrSata FROM sat ORDER BY rbrSata') AS pivotTable (\"searchedText\" TEXT, t0_1 INT, t1_2 INT"
+                        + ", t2_3 INT, t3_4 INT, t4_5 INT, t5_6 INT, t6_7 INT, t7_8 INT, t8_9 INT, t9_10 INT, t10_11 INT, t11_12 INT, t12_13 INT"
+                        + ", t13_14 INT, t14_15 INT, t15_16 INT, t16_17 INT, t17_18 INT, t18_19 INT, t19_20 INT, t20_21 INT, t21_22 INT, t22_23 INT, t23_00 INT) ORDER BY \"searchedText\"";
+            return myTestsql;
+        }
     }
 }

@@ -1,25 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Npgsql;
+using System.Data;
 
 namespace FullTextSearch
 {
     public partial class Analysis : Form
     {
-
         private PostgreSQL pg = new PostgreSQL();
         private SQLquerys sqlQuerys = new SQLquerys();
+        private DataSet dataSet = new DataSet();
+        private DataTable dataTable = new DataTable();
+
         string dateFrom;
         string dateTo;
         string timeFrom;
         string timeTo;        
-        char analysis;
+        char analysisLetter;
 
         public Analysis()
         {
@@ -28,8 +25,9 @@ namespace FullTextSearch
 
         public Analysis(string timestamp, char analysisType)
         {
+            InitializeComponent();
             string[] temp;
-            analysis = analysisType;
+            analysisLetter = analysisType;
             temp = timestamp.Split(' ');
             dateFrom = temp[0];
             timeFrom = temp[1];
@@ -40,6 +38,33 @@ namespace FullTextSearch
         private void Analysis_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private void button_LoadData_Click(object sender, EventArgs e)
+        {
+            string analysisQuery;
+            analysisQuery = sqlQuerys.queryForAnalysis();
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand(analysisQuery, pg.conn);
+                
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter();
+                adapter.SelectCommand = command;
+                DataTable dbTable = new DataTable();
+                adapter.Fill(dbTable);
+                BindingSource bSource = new BindingSource();
+
+                bSource.DataSource = dbTable;
+                dataGridView1.DataSource = bSource;
+                adapter.Update(dbTable);
+
+            }
+            catch
+            {
+
+            }
+            //pg.createSqlForAnalysis(pg.conn);
+            //pg.Test(pg.conn);
         }
     }
 }
