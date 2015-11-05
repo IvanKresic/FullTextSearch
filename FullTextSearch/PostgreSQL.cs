@@ -61,6 +61,22 @@ namespace FullTextSearch
             this.closeConnection();
         }
 
+        public void insertIntoAnalysisTable(string textToInsert, NpgsqlConnection nsqlConn)
+        {
+            string dateTime = DateTime.Now.ToString();
+            string[] temp;
+            temp = dateTime.Split(' ');
+            
+            string mySqlString = "INSERT INTO "+'"'+"analysisTable"+'"'+" ("+'"'+"searchedText"+'"'+", "+'"'+"dateOfSearch"+'"'+", "+'"'+"timeOfSearch"+'"'+") VALUES ('" + textToInsert+"', '"+temp[0]+"'"+", '"+temp[1]+"');";
+
+            this.openConnection();
+
+            NpgsqlCommand myCommand = new NpgsqlCommand(mySqlString, nsqlConn);
+            myCommand.ExecuteNonQuery();
+
+            this.closeConnection();
+        }
+
         public void executeQuery(string queryText, NpgsqlConnection nsqlConn)
         {
             this.openConnection();

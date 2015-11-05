@@ -59,6 +59,7 @@ namespace FullTextSearch
             string sql;
             string highlitedText;
             string rank;
+            string check;
 
             stringToSearch = textBox_Pretrazivanje.Text.Trim();
             List<string> list = parser.parseInput(stringToSearch);
@@ -66,11 +67,16 @@ namespace FullTextSearch
             sql = sqlQuerys.createSqlString(list, odabirAndOr, vrstaPretrazivanja);
             richTextBox1.Text = sql;
 
+            check = sqlQuerys.testIfEmpty(stringToSearch);
+            pg.insertIntoAnalysisTable(stringToSearch, pg.conn);
+
             pg.openConnection();
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(sql, pg.conn);
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(sql, pg.conn);            
             dataSet.Reset();
             dataAdapter.Fill(dataSet);
             pg.closeConnection();
+
+
 
             using (pg.conn)
             {
@@ -176,10 +182,26 @@ namespace FullTextSearch
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string from;
-            string to;
-            from = dateTimePicker_From.Value.ToString("dd/MM/yyyy hh:mm");
-            to = dateTimePicker_To.Value.ToString("dd/MM/yyyy hh:mm");
+            string dateFrom;
+            string dateTo;
+            string timeFrom;
+            string timeTo;
+            string selectedTimestamp;
+            string searchedText;
+            string[] temp;
+            
+
+            searchedText = textBox_Pretrazivanje.Text;
+
+            selectedTimestamp = dateTimePicker_From.Value.ToString("dd-MM-yyyy hh:mm:ss")+" "+dateTimePicker_To.Value.ToString("dd-MM-yyyy hh:mm:ss");
+
+            temp = selectedTimestamp.Split(' ');
+            dateFrom = temp[0];
+            timeFrom = temp[1];
+            dateTo = temp[2];
+            timeTo = temp[3];           
+            
+
             Analysis analize = new Analysis();
             analize.Show();
         }

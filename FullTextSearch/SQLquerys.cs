@@ -7,6 +7,7 @@ namespace FullTextSearch
     {
 
         static string giveMeTheKey;
+
         public void setTheKey(string connString)
         {
             giveMeTheKey = connString;
@@ -174,6 +175,12 @@ namespace FullTextSearch
             selectString = selectString + myTempString + "\nORDER BY rank DESC";
 
             return selectString;
+        }
+
+        public string testIfEmpty(string searchedText)
+        {
+            string checkingIfEmpty = "SELECT * FROM "+'"'+analysisTable+'"'+" WHERE searchedText == " + searchedText;
+            return checkingIfEmpty;
         }
     }
 }
