@@ -47,11 +47,7 @@ namespace FullTextSearch
 
             try
             {
-                //NpgsqlCommand tempTableComm = new NpgsqlCommand(tempTable, pg.conn);
-                //tempTableComm.ExecuteNonQuery();
-                pg.createTempTable(pg.conn);
-
-                //pg.executeQuery(tempTable, pg.conn);
+                pg.createTempTable(pg.conn, analysisLetter, dateFrom, dateTo);
 
                 NpgsqlCommand command = new NpgsqlCommand(analysisQuery, pg.conn);
                 

@@ -9,6 +9,7 @@ namespace FullTextSearch
         public NpgsqlConnection conn;
         SQLquerys sql = new SQLquerys();
         private string newConnString;
+        static int tempInt;
 
         public PostgreSQL()
         {
@@ -88,28 +89,89 @@ namespace FullTextSearch
             this.closeConnection();
         }
 
-        public void createTempTable(NpgsqlConnection nsqlConn)
+        public void createTempTable(NpgsqlConnection nsqlConn, char analysisType, string dateFrom, string dateTo)
         {
-            string dropIfExists = "DROP TABLE IF EXISTS \"sat\";";
-            string createTempTable = "CREATE TABLE IF NOT EXISTS \"sat\" (rbrSata INT);";
-            string insertIntoTempTable = "";
-            for(int i = 0; i< 24; i++)
+            
+            if (analysisType == 'H')
             {
-                insertIntoTempTable += "INSERT INTO \"sat\" VALUES (" + i + ");";
+                string dropIfExists = "DROP TABLE IF EXISTS \"sat\";";
+                string createTempTable = "CREATE TABLE IF NOT EXISTS \"sat\" (rbrSata INT);";
+                string insertIntoTempTable = "";
+                for (int i = 0; i < 24; i++)
+                {
+                    insertIntoTempTable += "INSERT INTO \"sat\" VALUES (" + i + ");";
+                }
+
+                this.openConnection();
+
+                NpgsqlCommand commandDrop = new NpgsqlCommand(dropIfExists, nsqlConn);
+                commandDrop.ExecuteNonQuery();
+
+                NpgsqlCommand commandCreate = new NpgsqlCommand(createTempTable, nsqlConn);
+                commandCreate.ExecuteNonQuery();
+
+                NpgsqlCommand commandInsert = new NpgsqlCommand(insertIntoTempTable, nsqlConn);
+                commandInsert.ExecuteNonQuery();
+
+                this.closeConnection();
             }
+            else if(analysisType == 'D')
+            {
+                string dropIfExists = "DROP TABLE IF EXISTS \"dan\";";
+                string createTempTable = "CREATE TABLE IF NOT EXISTS \"dan\" (rbrDana INT);";
+                string insertIntoTempTable = "";
+                int[] tempFrom = sql.parseForDates(dateFrom);
+                int[] tempTo = sql.parseForDates(dateTo);
+                
 
-            this.openConnection();
+                while (tempFrom[0] != tempTo[0] || tempFrom[1] != tempTo[1])
+                {
 
-            NpgsqlCommand commandDrop = new NpgsqlCommand(dropIfExists, nsqlConn);
-            commandDrop.ExecuteNonQuery();
+                    if (tempFrom[1] == tempTo[1])
+                    {
+                        if (tempFrom[0] != tempTo[0])
+                        {
+                            for (int i = 0; tempFrom[0] < tempTo[0]; i++)
+                            {
+                                insertIntoTempTable += "INSERT INTO \"dan\" VALUES (" + i + ");";
+                                tempInt = i;
+                                tempFrom[0]++;
+                            }
+                        }
+                    }
+                    if(tempFrom[1] != tempTo[1])
+                    {                        
+                        if(tempFrom[1] % 2 == 0 || tempFrom[1] == 7 || tempFrom[1] == 1)
+                        {
+                            for(int i = tempInt; tempFrom[0] < 31 && tempFrom[1] != tempTo[1]; i++ )
+                            {
+                                insertIntoTempTable += "INSERT INTO \"dan\" VALUES (" + i + ");";
+                                tempInt = i;
+                                tempFrom[0]++;
+                                if (tempFrom[0] == 31)
+                                {
+                                    tempFrom[1]++;
+                                    tempFrom[0] = 1;
+                                }
+                            }
+                            
+                        }
+                    }
+                }
 
-            NpgsqlCommand commandCreate = new NpgsqlCommand(createTempTable, nsqlConn);
-            commandCreate.ExecuteNonQuery();
+                this.openConnection();
 
-            NpgsqlCommand commandInsert = new NpgsqlCommand(insertIntoTempTable, nsqlConn);
-            commandInsert.ExecuteNonQuery();
+                NpgsqlCommand commandDrop = new NpgsqlCommand(dropIfExists, nsqlConn);
+                commandDrop.ExecuteNonQuery();
 
-            this.closeConnection();
+                NpgsqlCommand commandCreate = new NpgsqlCommand(createTempTable, nsqlConn);
+                commandCreate.ExecuteNonQuery();
+
+                NpgsqlCommand commandInsert = new NpgsqlCommand(insertIntoTempTable, nsqlConn);
+                commandInsert.ExecuteNonQuery();
+
+                this.closeConnection();
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 
 namespace FullTextSearch
@@ -201,6 +202,16 @@ namespace FullTextSearch
             }
         }
 
-
+        public int[] parseForDates(string date)
+        {
+            string[] temp;
+            int[] tempInt =new int[3];
+            temp = date.Split('-');
+            for(int i = 0; i < 3;i++)
+            {
+                tempInt[i] = int.Parse(temp[i]);
+            }
+            return tempInt;
+        }
     }
 }
