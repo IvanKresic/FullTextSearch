@@ -38,10 +38,15 @@ namespace FullTextSearch
 
         private void Analysis_Load(object sender, EventArgs e)
         {
-            
+            loadData();
         }
 
         private void button_LoadData_Click(object sender, EventArgs e)
+        {
+            loadData();
+        }
+
+        private void loadData()
         {
             sqlQuerys.setCounter();
             analysisQuery = sqlQuerys.queryForAnalysis(analysisLetter);
@@ -68,14 +73,14 @@ namespace FullTextSearch
 
                 }
             }
-            else if(analysisLetter == 'D')
+            else if (analysisLetter == 'D')
             {
                 string[] temp;
                 string sqlForDayAnalysis = sqlQuerys.createSqlForDayAnalysis(dateFrom, dateTo);
                 analysisQuery = sqlQuerys.queryForAnalysis(analysisLetter);
                 analysisQuery += sqlForDayAnalysis;
                 temp = analysisQuery.Split('#');
-                
+
                 try
                 {
                     pg.createTempTable(pg.conn, analysisLetter, dateFrom, dateTo, temp[1]);
@@ -97,6 +102,11 @@ namespace FullTextSearch
 
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
