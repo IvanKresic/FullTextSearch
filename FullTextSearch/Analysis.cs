@@ -43,9 +43,16 @@ namespace FullTextSearch
         private void button_LoadData_Click(object sender, EventArgs e)
         {
             string analysisQuery;
+            string tempTable = sqlQuerys.createtempTable();
             analysisQuery = sqlQuerys.queryForAnalysis();
+
             try
             {
+                //NpgsqlCommand tempTableComm = new NpgsqlCommand(tempTable, pg.conn);
+                //tempTableComm.ExecuteNonQuery();
+
+                pg.executeQuery(tempTable, pg.conn);
+
                 NpgsqlCommand command = new NpgsqlCommand(analysisQuery, pg.conn);
                 
                 NpgsqlDataAdapter adapter = new NpgsqlDataAdapter();
@@ -57,14 +64,11 @@ namespace FullTextSearch
                 bSource.DataSource = dbTable;
                 dataGridView1.DataSource = bSource;
                 adapter.Update(dbTable);
-
             }
             catch
             {
 
             }
-            //pg.createSqlForAnalysis(pg.conn);
-            //pg.Test(pg.conn);
         }
     }
 }

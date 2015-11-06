@@ -63,7 +63,6 @@ namespace FullTextSearch
             string highlitedText;
             string rank;
             string check;
-            //int checkReturn;
 
             stringToSearch = textBox_Pretrazivanje.Text.Trim();
             List<string> list = parser.parseInput(stringToSearch);
@@ -73,14 +72,9 @@ namespace FullTextSearch
 
             check = sqlQuerys.testIfEmpty(stringToSearch);
             pg.insertIntoAnalysisTable(stringToSearch, pg.conn);
-            //checkReturn = pg.checkIfNull(check, pg.conn);
 
             pg.openConnection();
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(sql, pg.conn);            
-            dataSet.Reset();
-            dataAdapter.Fill(dataSet);
-            //pg.closeConnection();
-            //pg.conn.Open();
+
             NpgsqlCommand command = new NpgsqlCommand(sql, pg.conn);                
                     NpgsqlDataReader reader = command.ExecuteReader();
                     int count = 0;
