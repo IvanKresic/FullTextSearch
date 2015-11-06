@@ -11,6 +11,7 @@ namespace FullTextSearch
         private SQLquerys sqlQuerys = new SQLquerys();
         private DataSet dataSet = new DataSet();
         private DataTable dataTable = new DataTable();
+        static string analysisQuery;
 
         string dateFrom;
         string dateTo;
@@ -42,28 +43,59 @@ namespace FullTextSearch
 
         private void button_LoadData_Click(object sender, EventArgs e)
         {
-            string analysisQuery;
+            
             analysisQuery = sqlQuerys.queryForAnalysis(analysisLetter);
-
-            try
+            if (analysisLetter == 'H')
             {
-                pg.createTempTable(pg.conn, analysisLetter, dateFrom, dateTo);
+                try
+                {
+                    pg.createTempTable(pg.conn, analysisLetter, dateFrom, dateTo, "asdasdad");
 
-                NpgsqlCommand command = new NpgsqlCommand(analysisQuery, pg.conn);
-                
-                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter();
-                adapter.SelectCommand = command;
-                DataTable dbTable = new DataTable();
-                adapter.Fill(dbTable);
-                BindingSource bSource = new BindingSource();
+                    NpgsqlCommand command = new NpgsqlCommand(analysisQuery, pg.conn);
 
-                bSource.DataSource = dbTable;
-                dataGridView1.DataSource = bSource;
-                adapter.Update(dbTable);
+                    NpgsqlDataAdapter adapter = new NpgsqlDataAdapter();
+                    adapter.SelectCommand = command;
+                    DataTable dbTable = new DataTable();
+                    adapter.Fill(dbTable);
+                    BindingSource bSource = new BindingSource();
+
+                    bSource.DataSource = dbTable;
+                    dataGridView1.DataSource = bSource;
+                    adapter.Update(dbTable);
+                }
+                catch
+                {
+
+                }
             }
-            catch
+            else if(analysisLetter == 'D')
             {
+                string[] temp;
+                string sqlForDayAnalysis = sqlQuerys.createSqlForDayAnalysis(dateFrom, dateTo);
+                analysisQuery = sqlQuerys.queryForAnalysis(analysisLetter);
+                analysisQuery += sqlForDayAnalysis;
+                temp = analysisQuery.Split('#');
+                
+                try
+                {
+                    pg.createTempTable(pg.conn, analysisLetter, dateFrom, dateTo, temp[1]);
 
+                    NpgsqlCommand command = new NpgsqlCommand(temp[0], pg.conn);
+
+                    NpgsqlDataAdapter adapter = new NpgsqlDataAdapter();
+                    adapter.SelectCommand = command;
+                    DataTable dbTable = new DataTable();
+                    adapter.Fill(dbTable);
+                    BindingSource bSource = new BindingSource();
+
+                    bSource.DataSource = dbTable;
+                    dataGridView1.DataSource = bSource;
+                    adapter.Update(dbTable);
+                }
+                catch
+                {
+
+                }
             }
         }
     }

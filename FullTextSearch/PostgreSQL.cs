@@ -9,7 +9,7 @@ namespace FullTextSearch
         public NpgsqlConnection conn;
         SQLquerys sql = new SQLquerys();
         private string newConnString;
-        static int tempInt;
+        static int tempInt=1;
 
         public PostgreSQL()
         {
@@ -89,7 +89,7 @@ namespace FullTextSearch
             this.closeConnection();
         }
 
-        public void createTempTable(NpgsqlConnection nsqlConn, char analysisType, string dateFrom, string dateTo)
+        public void createTempTable(NpgsqlConnection nsqlConn, char analysisType, string dateFrom, string dateTo, string splitMe)
         {
             
             if (analysisType == 'H')
@@ -119,45 +119,7 @@ namespace FullTextSearch
             {
                 string dropIfExists = "DROP TABLE IF EXISTS \"dan\";";
                 string createTempTable = "CREATE TABLE IF NOT EXISTS \"dan\" (rbrDana INT);";
-                string insertIntoTempTable = "";
-                int[] tempFrom = sql.parseForDates(dateFrom);
-                int[] tempTo = sql.parseForDates(dateTo);
-                
-
-                while (tempFrom[0] != tempTo[0] || tempFrom[1] != tempTo[1])
-                {
-
-                    if (tempFrom[1] == tempTo[1])
-                    {
-                        if (tempFrom[0] != tempTo[0])
-                        {
-                            for (int i = 0; tempFrom[0] < tempTo[0]; i++)
-                            {
-                                insertIntoTempTable += "INSERT INTO \"dan\" VALUES (" + i + ");";
-                                tempInt = i;
-                                tempFrom[0]++;
-                            }
-                        }
-                    }
-                    if(tempFrom[1] != tempTo[1])
-                    {                        
-                        if(tempFrom[1] % 2 == 0 || tempFrom[1] == 7 || tempFrom[1] == 1)
-                        {
-                            for(int i = tempInt; tempFrom[0] < 31 && tempFrom[1] != tempTo[1]; i++ )
-                            {
-                                insertIntoTempTable += "INSERT INTO \"dan\" VALUES (" + i + ");";
-                                tempInt = i;
-                                tempFrom[0]++;
-                                if (tempFrom[0] == 31)
-                                {
-                                    tempFrom[1]++;
-                                    tempFrom[0] = 1;
-                                }
-                            }
-                            
-                        }
-                    }
-                }
+                string insertIntoTempTable = splitMe;         
 
                 this.openConnection();
 

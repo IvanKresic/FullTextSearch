@@ -8,6 +8,7 @@ namespace FullTextSearch
     {
 
         static string giveMeTheKey;
+        static int tempInt = 1;
 
         public void setTheKey(string connString)
         {
@@ -196,10 +197,15 @@ namespace FullTextSearch
                             + ", t13_14 INT, t14_15 INT, t15_16 INT, t16_17 INT, t17_18 INT, t18_19 INT, t19_20 INT, t20_21 INT, t21_22 INT, t22_23 INT, t23_00 INT) ORDER BY \"searchedText\"";
                 return myTestsql;
             }
-            else
+            else if (analysisChoice == 'D')
             {
+                myTestsql += "SELECT *FROM crosstab ('SELECT CAST((\"searchedText\") AS text) AS searchedText, CAST(EXTRACT(DAY FROM \"dateOfSearch\") AS int) AS dan"
+                            + ", CAST(COUNT(*) AS int) AS broj FROM \"analysisTable\" GROUP BY \"searchedText\", "
+                            + "dan ORDER BY \"searchedText\", dan', 'SELECT rbrDana FROM dan ORDER BY rbrDana') AS pivotTable(\"searchedText\" TEXT";
                 return myTestsql;
             }
+            else
+                return myTestsql;
         }
 
         public int[] parseForDates(string date)
@@ -212,6 +218,54 @@ namespace FullTextSearch
                 tempInt[i] = int.Parse(temp[i]);
             }
             return tempInt;
+        }
+
+        public string createSqlForDayAnalysis(string dateFrom, string dateTo)
+        {
+            string insertIntoTempTable = "";
+            string dateTimeForAnalysis = "";
+            int[] tempFrom = this.parseForDates(dateFrom);
+            int[] tempTo = this.parseForDates(dateTo);
+
+
+            while (tempFrom[0] != tempTo[0] || tempFrom[1] != tempTo[1])
+            {
+
+                if (tempFrom[1] == tempTo[1])
+                {
+                    if (tempFrom[0] != tempTo[0])
+                    {
+                        for (int i = tempInt + 1; tempFrom[0] + 2 < tempTo[0] + 2; i++)
+                        {
+                            insertIntoTempTable += "INSERT INTO \"dan\" VALUES (" + i + ");";
+                            dateTimeForAnalysis += ",dd" + tempFrom[0] + tempFrom[1] + tempFrom[2]+" INT";
+                            tempInt = i;
+                            tempFrom[0]++;
+                        }
+                    }
+                }
+                if (tempFrom[1] != tempTo[1])
+                {
+                    if (tempFrom[1] % 2 == 0 || tempFrom[1] == 7 || tempFrom[1] == 1)
+                    {
+                        for (int i = tempInt; tempFrom[0] < 31 && tempFrom[1] != tempTo[1]; i++)
+                        {
+                            insertIntoTempTable += "INSERT INTO \"dan\" VALUES (" + i + ");";
+                            dateTimeForAnalysis += ", dd" + tempFrom[0] + tempFrom[1] + tempFrom[2] + " INT";
+                            tempInt = i;
+                            tempFrom[0]++;
+                            if (tempFrom[0] == 31)
+                            {
+                                tempFrom[1]++;
+                                tempFrom[0] = 1;
+                            }
+                        }
+
+                    }
+                }
+            }
+            dateTimeForAnalysis += ") ORDER BY \"searchedText\"";
+            return dateTimeForAnalysis + "#" + insertIntoTempTable;
         }
     }
 }
