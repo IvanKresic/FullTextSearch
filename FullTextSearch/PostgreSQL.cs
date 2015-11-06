@@ -87,5 +87,29 @@ namespace FullTextSearch
 
             this.closeConnection();
         }
+
+        public void createTempTable(NpgsqlConnection nsqlConn)
+        {
+            string dropIfExists = "DROP TABLE IF EXISTS \"sat\";";
+            string createTempTable = "CREATE TABLE IF NOT EXISTS \"sat\" (rbrSata INT);";
+            string insertIntoTempTable = "";
+            for(int i = 0; i< 24; i++)
+            {
+                insertIntoTempTable += "INSERT INTO \"sat\" VALUES (" + i + ");";
+            }
+
+            this.openConnection();
+
+            NpgsqlCommand commandDrop = new NpgsqlCommand(dropIfExists, nsqlConn);
+            commandDrop.ExecuteNonQuery();
+
+            NpgsqlCommand commandCreate = new NpgsqlCommand(createTempTable, nsqlConn);
+            commandCreate.ExecuteNonQuery();
+
+            NpgsqlCommand commandInsert = new NpgsqlCommand(insertIntoTempTable, nsqlConn);
+            commandInsert.ExecuteNonQuery();
+
+            this.closeConnection();
+        }
     }
 }

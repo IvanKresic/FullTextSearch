@@ -43,15 +43,15 @@ namespace FullTextSearch
         private void button_LoadData_Click(object sender, EventArgs e)
         {
             string analysisQuery;
-            string tempTable = sqlQuerys.createtempTable();
-            analysisQuery = sqlQuerys.queryForAnalysis();
+            analysisQuery = sqlQuerys.queryForAnalysis(analysisLetter);
 
             try
             {
                 //NpgsqlCommand tempTableComm = new NpgsqlCommand(tempTable, pg.conn);
                 //tempTableComm.ExecuteNonQuery();
+                pg.createTempTable(pg.conn);
 
-                pg.executeQuery(tempTable, pg.conn);
+                //pg.executeQuery(tempTable, pg.conn);
 
                 NpgsqlCommand command = new NpgsqlCommand(analysisQuery, pg.conn);
                 
