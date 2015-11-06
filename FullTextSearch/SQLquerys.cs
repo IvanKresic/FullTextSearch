@@ -22,6 +22,10 @@ namespace FullTextSearch
             return giveMeTheKey;
         }
 
+        public void setCounter()
+        {
+            tempInt = 1;
+        }
         public string createFunctionString(List<string> searchList, char selector)
         {
             string TempString = "";
@@ -251,7 +255,7 @@ namespace FullTextSearch
                         for (int i = tempInt; tempFrom[0] < 31 && tempFrom[1] != tempTo[1]; i++)
                         {
                             insertIntoTempTable += "INSERT INTO \"dan\" VALUES (" + i + ");";
-                            dateTimeForAnalysis += ", dd" + tempFrom[0] + tempFrom[1] + tempFrom[2] + " INT";
+                            dateTimeForAnalysis += ", dd" + tempFrom[0]  + tempFrom[1] +  tempFrom[2] + " INT";
                             tempInt = i;
                             tempFrom[0]++;
                             if (tempFrom[0] == 31)

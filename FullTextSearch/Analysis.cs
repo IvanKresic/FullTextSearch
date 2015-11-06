@@ -43,7 +43,7 @@ namespace FullTextSearch
 
         private void button_LoadData_Click(object sender, EventArgs e)
         {
-            
+            sqlQuerys.setCounter();
             analysisQuery = sqlQuerys.queryForAnalysis(analysisLetter);
             if (analysisLetter == 'H')
             {
