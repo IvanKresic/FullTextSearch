@@ -67,7 +67,7 @@ namespace FullTextSearch
             string[] temp;
             temp = dateTime.Split(' ');
             
-            string mySqlString = "INSERT INTO \"analysisTable\" (\"searchedText\", \"dateOfSearch\", \"timeOfSearch\") VALUES ('" + textToInsert + "', '" + temp[0] + "'" + ", '"+temp[1] + "');";
+            string mySqlString = "INSERT INTO \"analysisTable\" (\"searchedText\", \"dateOfSearch\", \"timeOfSearch\") VALUES ('" + textToInsert + "', '" + temp[0] + "'" + ", '" + temp[1] + "');";
 
             this.openConnection();
 
