@@ -231,7 +231,7 @@ namespace FullTextSearch
             int[] tempFrom = this.parseForDates(dateFrom);
             int[] tempTo = this.parseForDates(dateTo);
 
-
+            //Algorithm for month changing
             while (tempFrom[0] != tempTo[0] || tempFrom[1] != tempTo[1])
             {
 
