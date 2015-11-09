@@ -264,7 +264,7 @@ namespace FullTextSearch
                                 tempFrom[0] = 1;
                             }
                         }
-
+                         
                     }
                 }
             }
