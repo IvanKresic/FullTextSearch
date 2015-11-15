@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 
 namespace FullTextSearch
@@ -10,6 +9,7 @@ namespace FullTextSearch
         static string giveMeTheKey;
         static int tempInt = 1;
 
+        //Setting connection string
         public void setTheKey(string connString)
         {
             giveMeTheKey = connString;
