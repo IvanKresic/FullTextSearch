@@ -198,6 +198,7 @@ namespace FullTextSearch
             string myTestsql="";
             if (analysisChoice == 'H')
             {
+                //This query is written like this just for testing purposes, it need change
                 myTestsql = "SELECT * FROM crosstab('SELECT CAST((\"searchedText\") AS text) searchedText,"
                             + " CAST(EXTRACT(HOUR FROM \"timeOfSearch\") AS int) AS sat, CAST(COUNT(*) AS int) AS broj FROM \"analysisTable\" GROUP BY \"searchedText\", sat"
                             + " ORDER BY \"searchedText\", sat', 'SELECT rbrSata FROM sat ORDER BY rbrSata') AS pivotTable (\"searchedText\" TEXT, t0_1 INT, t1_2 INT"
@@ -207,6 +208,7 @@ namespace FullTextSearch
             }
             else if (analysisChoice == 'D')
             {
+                //This query is written like this just for testing purposes, it need change
                 myTestsql += "SELECT *FROM crosstab ('SELECT CAST((\"searchedText\") AS text) AS searchedText, CAST(EXTRACT(DAY FROM \"dateOfSearch\") AS int) AS dan"
                             + ", CAST(COUNT(*) AS int) AS broj FROM \"analysisTable\" GROUP BY \"searchedText\", "
                             + "dan ORDER BY \"searchedText\", dan', 'SELECT rbrDana FROM dan ORDER BY rbrDana') AS pivotTable(\"searchedText\" TEXT";
@@ -216,6 +218,7 @@ namespace FullTextSearch
                 return myTestsql;
         }
 
+        //This method is for parsing date
         public int[] parseForDates(string date)
         {
             string[] temp;
