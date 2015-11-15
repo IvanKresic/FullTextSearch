@@ -231,6 +231,8 @@ namespace FullTextSearch
             return tempInt;
         }
 
+        //This code is for creating analysis, it does some date/time manipulation in order
+        //to be able to create analysis for selected date/time.
         public string createSqlForDayAnalysis(string dateFrom, string dateTo)
         {
             string insertIntoTempTable = "";
