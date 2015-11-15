@@ -16,16 +16,20 @@ namespace FullTextSearch
             giveMeTheKey += "";
         }
 
+        //Getting the connection string stored in static variable
         public string getTheKey()
         {
             giveMeTheKey += "";
             return giveMeTheKey;
         }
 
+
         public void setCounter()
         {
             tempInt = 1;
         }
+
+        //Parsing strings for search, depending on selection of AND and OR
         public string createFunctionString(List<string> searchList, char selector)
         {
             string TempString = "";
@@ -60,7 +64,7 @@ namespace FullTextSearch
             return TempString;
         }
 
-
+        //Help method
         public List<string> splitInputField(string[] inputField)
         {
             List<string> unfinishedList = new List<string>();
@@ -73,7 +77,7 @@ namespace FullTextSearch
             return unfinishedList;
         }
 
-
+        //Help method
         public string[] splitListForInput(string inputString)
         {
             string[] parsedList = null;
@@ -83,7 +87,7 @@ namespace FullTextSearch
             return parsedList;
         }
 
-
+        //Function for creating ts functionality in PostgreSQL, used in dictionary search
         public string createTsFunction(string tsString)
         {
             string tsHeadline = "";
