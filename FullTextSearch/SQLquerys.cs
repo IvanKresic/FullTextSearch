@@ -101,7 +101,7 @@ namespace FullTextSearch
             return tsFunction;
         }
 
-
+        //Creating SQL query in dependecies of what tipe of search is selected, also depends on AND or OR selector
         public string createSqlString(List<string> searchList, char selector, char vrstaPretrazivanja)
         {
             string selectString = "";
