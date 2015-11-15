@@ -29,15 +29,17 @@ namespace FullTextSearch
             this.conn = new NpgsqlConnection(connectionstring);
         }
 
-        public void openConnection()
+        public bool openConnection()
         {
             try
             {
                 conn.Open();
+                return true;     
             }
             catch
             {
-                System.Windows.Forms.MessageBox.Show("Nije se moguće spojiti! Provjerite podatke!");
+                System.Windows.Forms.MessageBox.Show("Unable to connect! Check parameters!");
+                return false;
             }
         }
 

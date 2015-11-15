@@ -117,23 +117,25 @@ namespace FullTextSearch
 
         private void button_Connect_Click(object sender, EventArgs e)
         {
-            connectMe();
-            gb_unosPodataka.Enabled = true;
-            groupBox_Search.Enabled = true;
-            groupBox_Analysis.Enabled = true;
-            textBox_Database.Enabled = false;
-            textBox_IP.Enabled = false;
-            textBox_Port.Enabled = false;
-            textBox_Password.Enabled = false;
-            textBox_UserID.Enabled = false;
-            button_Connect.Enabled = false;
-            button_Disconnect.Enabled = true;
+            if (connectMe())
+            {
+                gb_unosPodataka.Enabled = true;
+                groupBox_Search.Enabled = true;
+                groupBox_Analysis.Enabled = true;
+                textBox_Database.Enabled = false;
+                textBox_IP.Enabled = false;
+                textBox_Port.Enabled = false;
+                textBox_Password.Enabled = false;
+                textBox_UserID.Enabled = false;
+                button_Connect.Enabled = false;
+                button_Disconnect.Enabled = true;
 
-            button_Pretrazi.BackColor = System.Drawing.Color.SkyBlue;
-            button_Disconnect.BackColor = System.Drawing.Color.IndianRed;
-            button_unosTekstaUBazu.BackColor = System.Drawing.Color.MediumSeaGreen;
-            button1.BackColor = System.Drawing.Color.MediumSeaGreen;
-            button_Connect.BackColor = System.Drawing.Color.WhiteSmoke;
+                button_Pretrazi.BackColor = System.Drawing.Color.SkyBlue;
+                button_Disconnect.BackColor = System.Drawing.Color.IndianRed;
+                button_unosTekstaUBazu.BackColor = System.Drawing.Color.MediumSeaGreen;
+                button1.BackColor = System.Drawing.Color.MediumSeaGreen;
+                button_Connect.BackColor = System.Drawing.Color.WhiteSmoke;
+            }
         }
 
         private void button_Disconnect_Click(object sender, EventArgs e)
@@ -163,12 +165,24 @@ namespace FullTextSearch
 
 
         string createConnString = "";
-        private void connectMe()
+        private bool connectMe()
         {            
             createConnString += "Server=" + textBox_IP.Text + ";Port=" + textBox_Port.Text + ";User Id=" + textBox_UserID.Text + ";Password=" + textBox_Password.Text + ";Database=" + textBox_Database.Text + ";";
             sqlQuerys.setTheKey(createConnString);
             pg.setConnectionString();
             pg.setConnection();
+            if(pg.openConnection())
+            {                
+                MessageBox.Show("You are successfuly connected!");
+                pg.closeConnection();
+                return true;
+            }  
+            else
+            {
+                return false;
+            }        
+             
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
