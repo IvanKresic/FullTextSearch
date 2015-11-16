@@ -2,7 +2,7 @@
 Desktop application (C#) for text insertion and text search with PostGreSQL database.
 
 
-**************************************************** Full Text Search **********************************************************
+********************************************** Full Text Search **********************************************************
 
 This project is based on C# desktop application, with PostgreSQL database. PostgreSQL is used in order to eneable text search
 using features PostgreSQL provides. 
