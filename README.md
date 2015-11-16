@@ -20,7 +20,7 @@ will get message that you can not establish connection and that you need to chec
  
 <b>NOTICE: </b>
     I left my hardcoded connectionstring values, so you can have it as example. If you try to connect with that connection 
-    string you won't be able to establish connection becouse database on that IP adress does not exist, it was made localy 
+    string you won't be able to establish connection because database on that IP adress does not exist, it was made localy 
     in virtual machine for testing purposes. Change parameters to fit to your database.
 
 Once you are connected, you can insert text into database in "Add data to database" section. Clicking "Add to database" 
