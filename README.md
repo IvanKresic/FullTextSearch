@@ -52,6 +52,8 @@ searching algorithms.
 
 You are able to search phrases like: "Legend of Tarzan" "Lord of" Dance
 
+Below "search" section query will be shown that has been sent to database, and it depends on configuration buttons you have selected. Below that the counter will show in how many documents searched text has been found, and the result of search query will be shown below counter, with rank.
+
 In analysis section you are able to select what kind of granulation you want by day or hour. Every time you search for some
 text, text you entered is saved with timestamp. So it would be possible to analyse which text is searched most in what
 time of the day (by hour), or by dates.
