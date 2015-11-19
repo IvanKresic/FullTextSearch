@@ -35,7 +35,7 @@ namespace FullTextSearch
             dateTo = temp[2];
             timeTo = temp[3];
         }
-
+         
         private void Analysis_Load(object sender, EventArgs e)
         {
             loadData();
